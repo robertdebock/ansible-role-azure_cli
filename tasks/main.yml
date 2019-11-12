@@ -1,0 +1,15 @@
+---
+# tasks file for azure_cli
+- name: add yum repository packages-microsoft-com-yumrepos-azure-cli
+  yum_repository:
+    name: "{{ item.name }}"
+    state: present
+    baseurl: "{{ item.baseurl }}"
+    description: "{{ item.description }}"
+    gpgkey: "{{ azure_cli_gpgkey }}"
+    gpgcheck: yes
+  when:
+    - ansible_distribution in [ "CentOS", "RedHat", "Fedora" ]
+  with_items: "{{ azure_cli_rhel_repositories }}"
+  loop_control:
+    label: "{{ item.name }}"
