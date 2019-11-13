@@ -2,20 +2,11 @@
 # vars file for azure_cli
 azure_cli_gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 
-azure_cli_rhel_repositories:
+azure_cli_yum_repositories:
   - name: packages-microsoft-com-yumrepos-azure-cli
     description: Microsoft Azure CLI
     baseurl: "https://packages.microsoft.com/yumrepos/azure-cli"
 
-# apt_key_server: packages.microsoft.com
-# apt_key_id: 52E16F86FEE04B979B07E28DB02C46DF417A0893
-
-# mssql_opensuse_repositories:
-#   - name: packages-microsoft-com-mssql-server-2017
-#     repo: https://packages.microsoft.com/sles/12/mssql-server-2017/
-#   - name: packages-microsoft-com-prod
-#     repo: https://packages.microsoft.com/sles/12/prod/
-#
-# mssql_ubuntu_repositories:
-#   - repo: https://packages.microsoft.com/ubuntu/{{ ansible_distribution_version }}/mssql-server-2017
-#   - repo: https://packages.microsoft.com/ubuntu/{{ ansible_distribution_version }}/prod
+azure_cli_apt_repositories:
+  - name: package-microsoft-com-repos-azure-cli
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ansible_distribution_release}} main"

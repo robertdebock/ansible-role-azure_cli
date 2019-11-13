@@ -1,104 +1,157 @@
 azure_cli
 =========
 
-[![Build Status](https://travis-ci.org/robertdebock/ansible-role-azure_cli.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-azure_cli)
+<img src="https://docs.ansible.com/ansible-tower/3.2.4/html_ja/installandreference/_static/images/logo_invert.png" width="10%" height="10%" alt="Ansible logo" align="right"/>
+<a href="https://travis-ci.org/robertdebock/ansible-role-azure_cli"> <img src="https://travis-ci.org/robertdebock/ansible-role-azure_cli.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/"/> <img src="https://img.shields.io/ansible/quality/"/>
 
-The purpose of this role is to install and configure azure_cli on your system.
+Install and configure azure_cli on your system.
 
-[Unit tests](https://travis-ci.org/robertdebock/ansible-role-azure_cli) are done on every commit and periodically.
+Example Playbook
+----------------
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-azure_cli/issues)
+This example is taken from `molecule/resources/playbook.yml`:
+```yaml
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: yes
 
-To test this role locally please use [Molecule](https://github.com/metacloud/molecule):
+  roles:
+    - robertdebock.azure_cli
 ```
-# Docker test:
-pip install molecule ara
-molecule test
-# Vagrant tests
-molecule test --scenario-name vagrant
+
+The machine you are running this on, may need to be prepared.
+```yaml
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.epel
+    - role: robertdebock.buildtools
+    - role: robertdebock.python_pip
 ```
-There are many scenarios available, please have a look in the `molecule/` directory.
+
+Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
+
+Role Variables
+--------------
+
+These variables are set in `defaults/main.yml`:
+```yaml
+---
+# defaults file for azure_cli
+```
+
+Requirements
+------------
+
+- Access to a repository containing packages, likely on the internet.
+- A recent version of Ansible. (Tests run on the current, previous and next release of Ansible.)
+
+The following roles can be installed to ensure all requirements are met, using `ansible-galaxy install -r requirements.yml`:
+
+```yaml
+---
+- robertdebock.bootstrap
+- robertdebock.buildtools
+- robertdebock.epel
+- robertdebock.python_pip
+
+```
 
 Context
---------
+-------
+
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
 
 Here is an overview of related roles:
 ![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/azure_cli.png "Dependency")
 
-Requirements
-------------
-
-- A system installed with required packages to run Ansible. Hint: [bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap).
-- Access to a repository containing packages, likely on the internet.
-- A recent version of Ansible. (Tests run on the last 3 release of Ansible.)
-
-Role Variables
---------------
-
-- azure_cli_parameter: Description of values. [default: value]
-
-Dependencies
-------------
-
-- None known.
 
 Compatibility
 -------------
 
-This role has been tested against the following distributions and Ansible version:
+This role has been tested on these [container images](https://hub.docker.com/):
 
-|distribution|ansible 2.4|ansible 2.5|ansible 2.6|ansible 2.7|ansible devel|
-|------------|-----------|-----------|-----------|-----------|-------------|
-|alpine-edge*|yes|yes|yes|yes|yes*|
-|alpine-latest|yes|yes|yes|yes|yes*|
-|archlinux|yes|yes|yes|yes|yes*|
-|centos-7|yes|yes|yes|yes|yes*|
-|centos-latest|yes|yes|yes|yes|yes*|
-|debian-latest|yes|yes|yes|yes|yes*|
-|debian-stable|yes|yes|yes|yes|yes*|
-|debian-unstable*|yes|yes|yes|yes|yes*|
-|fedora-latest|yes|yes|yes|yes|yes*|
-|fedora-rawhide*|yes|yes|yes|yes|yes*|
-|opensuse-leap|yes|yes|yes|yes|yes*|
-|ubuntu-artful|yes|yes|yes|yes|yes*|
-|ubuntu-devel*|yes|yes|yes|yes|yes*|
-|ubuntu-latest|yes|yes|yes|yes|yes*|
+|container|tag|allow_failures|
+|---------|---|--------------|
+|alpine|latest|no|
+|alpine|edge|yes|
+|debian|unstable|yes|
+|debian|latest|no|
+|centos|7|no|
+|fedora|latest|no|
+|fedora|rawhide|yes|
+|opensuse|latest|no|
+|ubuntu|latest|no|
 
-A single star means the build may fail, it's marked as an experimental build.
+This role has been tested on these Ansible versions:
 
-Example Playbook
-----------------
+- ansible>=2.8, <2.9
+- ansible>=2.9
+- git+https://github.com/ansible/ansible.git@devel
+
+
+
+
+Testing
+-------
+
+[Unit tests](https://travis-ci.org/robertdebock/ansible-role-azure_cli) are done on every commit, pull request, release and periodically.
+
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-azure_cli/issues)
+
+Testing is done using [Tox](https://tox.readthedocs.io/en/latest/) and [Molecule](https://github.com/ansible/molecule):
+
+[Tox](https://tox.readthedocs.io/en/latest/) tests multiple ansible versions.
+[Molecule](https://github.com/ansible/molecule) tests multiple distributions.
+
+To test using the defaults (any installed ansible version, namespace: `robertdebock`, image: `fedora`, tag: `latest`):
 
 ```
+molecule test
+
+# Or select a specific image:
+image=ubuntu molecule test
+# Or select a specific image and a specific tag:
+image="debian" tag="stable" tox
+```
+
+Or you can test multiple versions of Ansible, and select images:
+Tox allows multiple versions of Ansible to be tested. To run the default (namespace: `robertdebock`, image: `fedora`, tag: `latest`) tests:
+
+```
+tox
+
+# To run CentOS (namespace: `robertdebock`, tag: `latest`)
+image="centos" tox
+# Or customize more:
+image="debian" tag="stable" tox
+```
+
+Modules
+-------
+
+This role uses the following modules:
+```yaml
 ---
-- name: azure_cli
-  hosts: all
-  gather_facts: no
-  become: yes
-
-  roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.azure_cli
-      azure_cli_parameter: value
-```
-
-To install this role:
-- Install this role individually using `ansible-galaxy install robertdebock.azure_cli`
-
-Sample roles/requirements.yml: (install with `ansible-galaxy install -r roles/requirements.yml
-```
----
-- name: robertdebock.bootstrap
-- name: robertdebock.azure_cli
+- package
+- service
+- yum_repository
 ```
 
 License
 -------
 
-Apache License, Version 2.0
+Apache-2.0
+
 
 Author Information
 ------------------
 
-[Robert de Bock](https://robertdebock.nl/) <robert@meinit.nl>
+[Robert de Bock](https://robertdebock.nl/)
