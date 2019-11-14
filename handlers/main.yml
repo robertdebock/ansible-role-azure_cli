@@ -1,8 +1,0 @@
----
-# handlers file for azure_cli
-- name: restart azure_cli
-  service:
-    name: "{{ azure_cli_service }}"
-    state: restarted
-  when:
-    - ansible_virtualization_type != "docker"

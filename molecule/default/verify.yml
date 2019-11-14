@@ -3,5 +3,10 @@
   hosts: all
 
   tasks:
+    - name: install bash
+      package:
+        name: bash
+        state: present
+
     - name: try az
       command: az --version
