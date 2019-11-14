@@ -9,4 +9,4 @@ azure_cli_yum_repositories:
 
 azure_cli_apt_repositories:
   - name: package-microsoft-com-repos-azure-cli
-    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ansible_distribution_release}} main"
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main"

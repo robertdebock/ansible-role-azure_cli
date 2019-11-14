@@ -18,8 +18,11 @@
   block:
     - name: add apt key
       apt_key:
-        keyserver: packages.microsoft.com
-        id: 52E16F86FEE04B979B07E28DB02C46DF417A0893
+        url: "{{ azure_cli_gpgkey }}"
+        state: present
+      register: azure_cli_add_apt_key
+      until: azure_cli_add_apt_key is succeeded
+      retries: 3
 
     - name: add apt repository packages-microsoft-com-yumrepos-azure-cli
       apt_repository:
@@ -45,24 +48,41 @@
 
 - name: use the install script
   block:
-    - name: download azure-cli installation script
+    - name: download installation script
       get_url:
         url: "https://azurecliprod.blob.core.windows.net/install.py"
         dest: /tmp
         mode: "0750"
         checksum: "sha256:7419f49b066015d863f398198c4ac5ad026f5aa3705e898b552e4e03fc352552"
+      register: azure_cli_download_installation_script
+      until: azure_cli_download_installation_script is succeeded
+      retries: 3
+
+    - name: install pexpect
+      pip:
+        name: pexpect
+        state: present
+      register: azure_cli_install_pexpect
+      until: azure_cli_install_pexpect is succeeded
+      retries: 3
 
     - name: run azure-cli installation script
       block:
         - name: use python3
-          command: python3 /tmp/install.py
-          args:
-            creates: XXX
+          expect:
+            command: python3 /tmp/install.py
+            responses:
+              "===> In what directory would you like to place the install? (leave blank to use '/root/lib/azure-cli'):": /root/lib/azure-cli
+              "===> In what directory would you like to place the 'az' executable? (leave blank to use '/root/bin'): /root/bin
+            creates: /root/bin/az
       rescue:
         - name: use python
-          command: python /tmp/install.py
-          args:
-            creates: XXX
+          expect:
+            command: python /tmp/install.py
+            responses:
+              "===> In what directory would you like to place the install? (leave blank to use '/root/lib/azure-cli'): ": /root/lib/azure-cli
+              "===> In what directory would you like to place the 'az' executable? (leave blank to use '/root/bin'): /root/bin
+            creates: /root/bin/az
   when:
     - ansible_os_family != "RedHat"
     - ansible_os_family != "Debian"
