@@ -2,7 +2,7 @@ azure_cli
 =========
 
 <img src="https://docs.ansible.com/ansible-tower/3.2.4/html_ja/installandreference/_static/images/logo_invert.png" width="10%" height="10%" alt="Ansible logo" align="right"/>
-<a href="https://travis-ci.org/robertdebock/ansible-role-azure_cli"> <img src="https://travis-ci.org/robertdebock/ansible-role-azure_cli.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/"/> <img src="https://img.shields.io/ansible/quality/"/>
+<a href="https://travis-ci.org/robertdebock/ansible-role-azure_cli"> <img src="https://travis-ci.org/robertdebock/ansible-role-azure_cli.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/44611"/> <img src="https://img.shields.io/ansible/quality/44611"/>
 
 Install and configure azure_cli on your system.
 
@@ -34,18 +34,15 @@ The machine you are running this on, may need to be prepared.
     - role: robertdebock.epel
     - role: robertdebock.buildtools
     - role: robertdebock.python_pip
+    - role: robertdebock.alternatives
+      alternatives_list:
+        - name: python
+          link: /usr/bin/python
+          path: /usr/bin/python3
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
-Role Variables
---------------
-
-These variables are set in `defaults/main.yml`:
-```yaml
----
-# defaults file for azure_cli
-```
 
 Requirements
 ------------
@@ -57,6 +54,7 @@ The following roles can be installed to ensure all requirements are met, using `
 
 ```yaml
 ---
+- robertdebock.alternatives
 - robertdebock.bootstrap
 - robertdebock.buildtools
 - robertdebock.epel
@@ -85,6 +83,7 @@ This role has been tested on these [container images](https://hub.docker.com/):
 |debian|unstable|yes|
 |debian|latest|no|
 |centos|7|no|
+|centos|latest|no|
 |fedora|latest|no|
 |fedora|rawhide|yes|
 |opensuse|latest|no|
@@ -140,9 +139,7 @@ Modules
 This role uses the following modules:
 ```yaml
 ---
-- package
-- service
-- yum_repository
+- pip
 ```
 
 License

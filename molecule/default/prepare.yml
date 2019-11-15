@@ -9,3 +9,8 @@
     - role: robertdebock.epel
     - role: robertdebock.buildtools
     - role: robertdebock.python_pip
+    - role: robertdebock.alternatives
+      alternatives_list:
+        - name: python
+          link: /usr/bin/python
+          path: /usr/bin/python3
