@@ -1,6 +1,6 @@
 ---
-- robertdebock.alternatives
 - robertdebock.bootstrap
 - robertdebock.buildtools
 - robertdebock.epel
+- robertdebock.microsoft_repository_keys
 - robertdebock.python_pip
