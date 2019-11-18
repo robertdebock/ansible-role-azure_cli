@@ -74,12 +74,9 @@ This role has been tested on these [container images](https://hub.docker.com/):
 
 |container|tag|allow_failures|
 |---------|---|--------------|
-|alpine|latest|no|
-|alpine|edge|yes|
 |debian|unstable|yes|
 |debian|latest|no|
 |centos|7|no|
-|centos|latest|no|
 |fedora|latest|no|
 |fedora|rawhide|yes|
 |opensuse|latest|no|
@@ -91,6 +88,15 @@ This role has been tested on these Ansible versions:
 - ansible>=2.9
 - git+https://github.com/ansible/ansible.git@devel
 
+Exceptions
+----------
+
+Some variarations of the build matrix do not work. These are the variations and reasons why the build won't work:
+
+| variation                 | reason                 |
+|---------------------------|------------------------|
+| Alpine | fatal error: Python.h: No such file or directory |
+| centos:latest | Depsolve Error occured: Problem: cannot install the best candidate for the job - nothing provides python needed by azure-cli-2.0.76-1.el7.x86_64 |
 
 
 
