@@ -32,7 +32,6 @@ galaxy_info:
     - azurecli
     - archlinux
     - centos
-    - fedora
     - opensuse
     - rhel
     - ubuntu
