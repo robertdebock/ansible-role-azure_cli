@@ -116,7 +116,6 @@ Some variarations of the build matrix do not work. These are the variations and 
 | centos:latest | Depsolve Error occured: Problem: cannot install the best candidate for the job - nothing provides python needed by azure-cli-2.0.76-1.el7.x86_64 |
 
 
-
 Testing
 -------
 
