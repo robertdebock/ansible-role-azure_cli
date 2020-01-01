@@ -4,6 +4,8 @@ azure_cli
 <img src="https://docs.ansible.com/ansible-tower/3.2.4/html_ja/installandreference/_static/images/logo_invert.png" width="10%" height="10%" alt="Ansible logo" align="right"/>
 <a href="https://travis-ci.org/robertdebock/ansible-role-azure_cli"> <img src="https://travis-ci.org/robertdebock/ansible-role-azure_cli.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/44611"/> <img src="https://img.shields.io/ansible/quality/44611"/>
 
+<a href="https://github.com/robertdebock/ansible-role-azure_cli/actions"><img src="https://github.com/robertdebock/ansible-role-azure_cli/workflows/GitHub%20Action/badge.svg"/></a>
+
 Install and configure azure_cli on your system.
 
 Example Playbook
