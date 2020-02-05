@@ -12,7 +12,7 @@
         gpgcheck: yes
       when:
         - ansible_os_family == "RedHat"
-      with_items: "{{ azure_cli_yum_repositories }}"
+      loop: "{{ azure_cli_yum_repositories }}"
       loop_control:
         label: "{{ item.name }}"
 
@@ -23,7 +23,7 @@
         state: present
       when:
         - ansible_os_family == "Debian"
-      with_items: "{{ azure_cli_apt_repositories }}"
+      loop: "{{ azure_cli_apt_repositories }}"
       loop_control:
         label: "{{ item.name }}"
 
