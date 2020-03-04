@@ -1,45 +1,9 @@
 ---
 # tasks file for azure_cli
 - name: install azure-cli
-  block:
-    - name: add yum repository packages-microsoft-com-yumrepos-azure-cli
-      yum_repository:
-        name: "{{ item.name }}"
-        state: present
-        baseurl: "{{ item.baseurl }}"
-        description: "{{ item.description }}"
-        gpgkey: "{{ azure_cli_gpgkey }}"
-        gpgcheck: yes
-      when:
-        - ansible_os_family == "RedHat"
-      loop: "{{ azure_cli_yum_repositories }}"
-      loop_control:
-        label: "{{ item.name }}"
-
-    - name: add apt repository packages-microsoft-com-yumrepos-azure-cli
-      apt_repository:
-        repo: "{{ item.repo }}"
-        filename: "{{ item.name }}"
-        state: present
-      when:
-        - ansible_os_family == "Debian"
-      loop: "{{ azure_cli_apt_repositories }}"
-      loop_control:
-        label: "{{ item.name }}"
-
-    - name: install using package
-      package:
-        name: azure-cli
-        state: present
-      register: azure_cli_install_using_package
-      until: azure_cli_install_using_package is succeeded
-      retries: 3
-
-  rescue:
-    - name: install using pip
-      pip:
-        name: azure-cli
-        state: present
-      register: azure_cli_install_using_pip
-      until: azure_cli_install_using_pip is succeeded
-      retries: 3
+  pip:
+    name: azure-cli
+    state: present
+  register: azure_cli_install_using_pip
+  until: azure_cli_install_using_pip is succeeded
+  retries: 3
