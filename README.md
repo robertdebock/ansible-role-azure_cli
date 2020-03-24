@@ -94,7 +94,6 @@ This role has been tested on these [container images](https://hub.docker.com/):
 |debian|all|
 |el|7|
 |fedora|all|
-|opensuse|all|
 |ubuntu|bionic|
 
 The minimum version of Ansible required is 2.8 but tests have been done to:
@@ -112,6 +111,7 @@ Some variarations of the build matrix do not work. These are the variations and 
 |---------------------------|------------------------|
 | Alpine | fatal error: Python.h: No such file or directory |
 | centos:latest | Depsolve Error occured: Problem: cannot install the best candidate for the job - nothing provides python needed by azure-cli-2.0.76-1.el7.x86_64 |
+| opensuse | Cannot uninstall 'six'. It is a distutils installed project |
 
 
 Testing
