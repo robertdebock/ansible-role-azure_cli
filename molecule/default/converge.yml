@@ -5,4 +5,4 @@
   gather_facts: yes
 
   roles:
-    - ansible-role-azure_cli
+    - role: ansible-role-azure_cli
