@@ -85,9 +85,10 @@ This role has been tested on these [container images](https://hub.docker.com/):
 
 |container|tags|
 |---------|----|
+|alpine|all|
+|el|7, 8|
 |debian|buster|
-|el|7|
-|fedora|all|
+|fedora|31, 32|
 |opensuse|all|
 |ubuntu|bionic|
 
