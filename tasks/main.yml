@@ -2,7 +2,7 @@
 # tasks file for azure_cli
 - name: add apt repository
   apt_repository:
-    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ansible_distribution_release}} main"
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main"
     state: present
   when:
     - ansible_pkg_mgr in ["apt"]
