@@ -1,5 +1,6 @@
 ---
 # vars file for azure_cli
+
 azure_cli_gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
 
 azure_cli_yum_repositories:
