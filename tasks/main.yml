@@ -30,9 +30,6 @@
   pip:
     name: azure-cli
     state: present
-  register: azure_cli_install_using_pip
-  until: azure_cli_install_using_pip is succeeded
-  retries: 3
   when:
     - ansible_pkg_mgr not in ["apt", "yum", "dnf", "zypper"]
 
@@ -40,8 +37,5 @@
   package:
     name: azure-cli
     state: present
-  register: azure_cli_install_using_package
-  until: azure_cli_install_using_package is succeeded
-  retries: 3
   when:
     - ansible_pkg_mgr in ["apt", "yum", "dnf", "zypper"]
