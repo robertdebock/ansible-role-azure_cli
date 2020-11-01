@@ -1,6 +1,7 @@
 ---
-- robertdebock.bootstrap
-- robertdebock.buildtools
-- robertdebock.epel
-- robertdebock.microsoft_repository_keys
-- robertdebock.python_pip
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.buildtools
+  - name: robertdebock.epel
+  - name: robertdebock.microsoft_repository_keys
+  - name: robertdebock.python_pip
