@@ -5,7 +5,7 @@
     repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main"
     state: present
   when:
-    - ansible_pkg_mgr in ["apt"]
+    - ansible_pkg_mgr in [ "apt" ]
 
 - name: add yum repository
   yum_repository:
@@ -16,7 +16,7 @@
     gpgcheck: yes
     gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
   when:
-    - ansible_pkg_mgr in ["yum", "dnf"]
+    - ansible_pkg_mgr in [ "yum", "dnf" ]
 
 - name: add zypper repository
   zypper_repository:
@@ -24,18 +24,18 @@
     repo: 'https://packages.microsoft.com/yumrepos/azure-cli'
     state: present
   when:
-    - ansible_pkg_mgr in ["zypper"]
+    - ansible_pkg_mgr in [ "zypper" ]
 
 - name: install using pip
   pip:
     name: azure-cli
     state: present
   when:
-    - ansible_pkg_mgr not in ["apt", "yum", "dnf", "zypper"]
+    - ansible_pkg_mgr not in [ "apt", "yum", "dnf", "zypper" ]
 
 - name: install
   package:
     name: azure-cli
     state: present
   when:
-    - ansible_pkg_mgr in ["apt", "yum", "dnf", "zypper"]
+    - ansible_pkg_mgr in [ "apt", "yum", "dnf", "zypper" ]
