@@ -2,9 +2,9 @@
 
 Install and configure azure_cli on your system.
 
-|Travis|GitHub|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-azure_cli.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-azure_cli)|[![github](https://github.com/robertdebock/ansible-role-azure_cli/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-azure_cli/actions)|[![quality](https://img.shields.io/ansible/quality/44611)](https://galaxy.ansible.com/robertdebock/azure_cli)|[![downloads](https://img.shields.io/ansible/role/d/44611)](https://galaxy.ansible.com/robertdebock/azure_cli)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-azure_cli.svg)](https://github.com/robertdebock/ansible-role-azure_cli/releases/)|
+|Travis|GitHub|GitLab|Quality|Downloads|Version|
+|------|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-azure_cli.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-azure_cli)|[![github](https://github.com/robertdebock/ansible-role-azure_cli/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-azure_cli/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-azure_cli/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-azure_cli)|[![quality](https://img.shields.io/ansible/quality/44611)](https://galaxy.ansible.com/robertdebock/azure_cli)|[![downloads](https://img.shields.io/ansible/role/d/44611)](https://galaxy.ansible.com/robertdebock/azure_cli)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-azure_cli.svg)](https://github.com/robertdebock/ansible-role-azure_cli/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
