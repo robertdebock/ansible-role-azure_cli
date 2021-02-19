@@ -2,14 +2,14 @@
 # tasks file for azure_cli
 
 - name: add apt repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main"
     state: present
   when:
     - ansible_pkg_mgr in [ "apt" ]
 
 - name: add yum repository
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: AzureCLI
     description: Azure CLI
     baseurl: "https://packages.microsoft.com/yumrepos/azure-cli"
@@ -20,7 +20,7 @@
     - ansible_pkg_mgr in [ "yum", "dnf" ]
 
 - name: add zypper repository
-  zypper_repository:
+  community.general.zypper_repository:
     name: AzureCLI
     repo: 'https://packages.microsoft.com/yumrepos/azure-cli'
     state: present
@@ -28,14 +28,14 @@
     - ansible_pkg_mgr in [ "zypper" ]
 
 - name: install using pip
-  pip:
+  ansible.builtin.pip:
     name: azure-cli
     state: present
   when:
     - ansible_pkg_mgr not in [ "apt", "yum", "dnf", "zypper" ]
 
 - name: install
-  package:
+  ansible.builtin.package:
     name: azure-cli
     state: present
   when:
