@@ -9,4 +9,5 @@
         state: present
 
     - name: try az
-      command: az --version
+      ansible.builtin.command:
+        cmd: az --version
