@@ -3,11 +3,11 @@
   hosts: all
 
   tasks:
-    - name: install bash
+    - name: Install bash
       ansible.builtin.package:
         name: bash
         state: present
 
-    - name: try az
+    - name: Try az
       ansible.builtin.command:
         cmd: az --version
