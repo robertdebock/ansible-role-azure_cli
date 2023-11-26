@@ -1,4 +1,4 @@
-# Ansible role [azure_cli](#azure_cli)
+# [Ansible role azure_cli](#azure_cli)
 
 Install and configure azure_cli on your system.
 
