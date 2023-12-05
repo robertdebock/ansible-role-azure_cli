@@ -16,8 +16,6 @@ molecule:
         tag: "latest"
       - image: "enterpriselinux"
         tag: "8"
-      - image: "enterpriselinux"
-        tag: "latest"
       - image: "debian"
         tag: "bullseye"
       - image: "fedora"
