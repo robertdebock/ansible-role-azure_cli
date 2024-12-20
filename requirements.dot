@@ -1,0 +1,17 @@
+digraph PhiloDilemma {
+  label = "Robert de Bock" ;
+  overlap=false
+  {
+    "azure_cli" [fillcolor=yellow style=filled penwidth=3]
+    "robertdebock.bootstrap" [fillcolor=green style=filled]
+    "robertdebock.buildtools" [fillcolor=green style=filled]
+    "robertdebock.epel" [fillcolor=green style=filled]
+    "robertdebock.microsoft_repository_keys" [fillcolor=green style=filled]
+    "robertdebock.python_pip" [fillcolor=green style=filled]
+  }
+  "azure_cli" -> "robertdebock.bootstrap"
+  "azure_cli" -> "robertdebock.buildtools"
+  "azure_cli" -> "robertdebock.epel"
+  "azure_cli" -> "robertdebock.microsoft_repository_keys"
+  "azure_cli" -> "robertdebock.python_pip"
+}
