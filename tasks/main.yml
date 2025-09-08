@@ -16,6 +16,7 @@
     enabled: true
     gpgcheck: true
     gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+    priority: 1
   when:
     - ansible_pkg_mgr in [ "yum", "dnf", "dnf5" ]
 
