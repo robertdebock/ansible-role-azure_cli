@@ -39,4 +39,4 @@
     name: azure-cli
     state: present
   when:
-    - ansible_pkg_mgr in [ "apt", "yum", "dnf", "zypper, "dnf5"" ]
+    - ansible_pkg_mgr in [ "apt", "yum", "dnf", "zypper, "dnf5" ]
