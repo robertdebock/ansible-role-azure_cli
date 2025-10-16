@@ -35,6 +35,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.epel
     - role: robertdebock.buildtools
     - role: robertdebock.python_pip
+      python_pip_modules:
+        - azure-cli
     - role: robertdebock.microsoft_repository_keys
 ```
 
