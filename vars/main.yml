@@ -6,6 +6,9 @@ _azure_cli_required_packages:
   default:
     - python3-setuptools
     - python3-pip
+  Alpine:
+    - py3-setuptools
+    - py3-pip
   Suse:
     - python3-setuptools
   Debian:

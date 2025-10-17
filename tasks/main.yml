@@ -33,7 +33,7 @@
     name: "{{ azure_cli_required_packages }}"
     state: present
   when:
-    - ansible_cli_python_interpreter is not defined or ansible_cli_python_interpreter is not none
+    - azure_cli_required_packages | length > 0
 
 - name: Install pip package
   when:
