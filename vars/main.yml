@@ -12,6 +12,17 @@ _azure_cli_required_packages:
   Suse:
     - python3-setuptools
   Debian:
-    - python3-distutils
+    - python3-setuptools
 
 azure_cli_required_packages: "{{ _azure_cli_required_packages[ansible_os_family] | default(_azure_cli_required_packages['default']) }}"
+
+# Map distribution release names to the codename supported by the Azure CLI APT repo.
+# Microsoft does not publish for Debian testing/unstable (e.g. trixie, sid);
+# map those to the latest supported stable release.
+_azure_cli_apt_codename_map:
+  default: {}
+  Debian:
+    trixie: bookworm
+    sid: bookworm
+
+azure_cli_apt_codename: "{{ _azure_cli_apt_codename_map[ansible_os_family][ansible_distribution_release] | default(ansible_distribution_release) }}"

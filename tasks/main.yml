@@ -3,7 +3,7 @@
 
 - name: Add apt repository
   ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main"
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ azure_cli_apt_codename }} main"
     state: present
   when:
     - ansible_pkg_mgr in [ "apt" ]
