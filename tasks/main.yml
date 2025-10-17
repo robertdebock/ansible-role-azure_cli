@@ -28,6 +28,13 @@
   when:
     - ansible_pkg_mgr in [ "zypper" ]
 
+- name: Install required packages for Azure CLI
+  ansible.builtin.package:
+    name: "{{ azure_cli_required_packages }}"
+    state: present
+  when:
+    - ansible_cli_python_interpreter is not defined or ansible_cli_python_interpreter is not none
+
 - name: Install pip package
   when:
     - ansible_pkg_mgr not in [ "apt", "yum", "dnf", "zypper", "dnf5" ]

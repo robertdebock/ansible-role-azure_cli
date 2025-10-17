@@ -1,0 +1,14 @@
+---
+# Internal variables for azure_cli
+
+# Map OS family to required packages for Azure CLI to run.
+_azure_cli_required_packages:
+  default:
+    - python3-setuptools
+    - python3-pip
+  Suse:
+    - python3-setuptools
+  Debian:
+    - python3-distutils
+
+azure_cli_required_packages: "{{ _azure_cli_required_packages[ansible_os_family] | default(_azure_cli_required_packages['default']) }}"
