@@ -28,12 +28,19 @@
   when:
     - ansible_pkg_mgr in [ "zypper" ]
 
-- name: Install using pip
-  ansible.builtin.pip:
-    name: azure-cli
-    state: present
+- name: Install pip package
   when:
     - ansible_pkg_mgr not in [ "apt", "yum", "dnf", "zypper", "dnf5" ]
+  block:
+    - name: Install pip package no flags
+      ansible.builtin.pip:
+        name: azure-cli
+  rescue:
+    - name: Retry install with --break-system-packages when supported
+      ansible.builtin.pip:
+        name: azure-cli
+        break_system_packages: true
+        extra_args: --break-system-packages
 
 - name: Install
   ansible.builtin.package:
