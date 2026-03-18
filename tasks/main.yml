@@ -6,7 +6,7 @@
     repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ azure_cli_apt_codename }} main"
     state: present
   when:
-    - ansible_pkg_mgr in [ "apt" ]
+    - ansible_facts['pkg_mgr'] in [ "apt" ]
 
 - name: Add yum repository
   ansible.builtin.yum_repository:
@@ -18,7 +18,7 @@
     gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
     priority: 1
   when:
-    - ansible_pkg_mgr in [ "yum", "dnf", "dnf5" ]
+    - ansible_facts['pkg_mgr'] in [ "yum", "dnf", "dnf5" ]
 
 - name: Add zypper repository
   community.general.zypper_repository:
@@ -26,7 +26,7 @@
     repo: 'https://packages.microsoft.com/yumrepos/azure-cli'
     state: present
   when:
-    - ansible_pkg_mgr in [ "zypper" ]
+    - ansible_facts['pkg_mgr'] in [ "zypper" ]
 
 - name: Install required packages for Azure CLI
   ansible.builtin.package:
@@ -37,7 +37,7 @@
 
 - name: Install pip package
   when:
-    - ansible_pkg_mgr not in [ "apt", "yum", "dnf", "zypper", "dnf5" ]
+    - ansible_facts['pkg_mgr'] not in [ "apt", "yum", "dnf", "zypper", "dnf5" ]
   block:
     - name: Install pip package no flags
       ansible.builtin.pip:
@@ -54,4 +54,4 @@
     name: azure-cli
     state: present
   when:
-    - ansible_pkg_mgr in [ "apt", "yum", "dnf", "zypper", "dnf5" ]
+    - ansible_facts['pkg_mgr'] in [ "apt", "yum", "dnf", "zypper", "dnf5" ]

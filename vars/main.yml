@@ -9,7 +9,7 @@ _azure_cli_required_packages:
     - py3-setuptools
     - py3-pip
 
-azure_cli_required_packages: "{{ _azure_cli_required_packages[ansible_os_family] | default(_azure_cli_required_packages['default']) }}"
+azure_cli_required_packages: "{{ _azure_cli_required_packages[ansible_facts['os_family']] | default(_azure_cli_required_packages['default']) }}"
 
 # Map distribution release names to the codename supported by the Azure CLI APT repo.
 # Microsoft does not publish for Debian testing/unstable (e.g. trixie, sid);
@@ -20,4 +20,4 @@ _azure_cli_apt_codename_map:
     trixie: bookworm
     sid: bookworm
 
-azure_cli_apt_codename: "{{ _azure_cli_apt_codename_map[ansible_os_family][ansible_distribution_release] | default(ansible_distribution_release) }}"
+azure_cli_apt_codename: "{{ _azure_cli_apt_codename_map[ansible_facts['os_family']][ansible_facts['distribution_release']] | default(ansible_facts['distribution_release']) }}"
