@@ -71,7 +71,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bookworm, trixie|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|42, 40|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done on:
 
