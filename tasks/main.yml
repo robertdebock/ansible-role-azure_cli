@@ -19,6 +19,7 @@
     priority: 1
   when:
     - ansible_facts['pkg_mgr'] in [ "yum", "dnf", "dnf5" ]
+    - not azure_cli_install_with_pip
 
 - name: Add zypper repository
   community.general.zypper_repository:
@@ -37,7 +38,7 @@
 
 - name: Install pip package
   when:
-    - ansible_facts['pkg_mgr'] not in [ "apt", "yum", "dnf", "zypper", "dnf5" ]
+    - azure_cli_install_with_pip
   block:
     - name: Install pip package no flags
       ansible.builtin.pip:
@@ -54,4 +55,4 @@
     name: azure-cli
     state: present
   when:
-    - ansible_facts['pkg_mgr'] in [ "apt", "yum", "dnf", "zypper", "dnf5" ]
+    - not azure_cli_install_with_pip

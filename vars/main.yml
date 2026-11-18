@@ -21,3 +21,7 @@ _azure_cli_apt_codename_map:
     sid: bookworm
 
 azure_cli_apt_codename: "{{ _azure_cli_apt_codename_map[ansible_facts['os_family']][ansible_facts['distribution_release']] | default(ansible_facts['distribution_release']) }}"
+
+# Microsoft only publishes an old EL 7 rpm for Fedora (rejected by current rpm, no digest), use pip there. Distributions
+# without a supported package manager use pip as well.
+azure_cli_install_with_pip: "{{ ansible_facts['distribution'] == 'Fedora' or ansible_facts['pkg_mgr'] not in [ 'apt', 'yum', 'dnf', 'zypper', 'dnf5' ] }}"
